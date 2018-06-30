@@ -58,6 +58,15 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     }
 
     /**
+     * 更新数据后重新绘制
+     */
+    public void notifyChanged() {
+        if (mStepBeanList != null) {
+            mStepsViewIndicator.setStepNum(mStepBeanList);
+        }
+    }
+
+    /**
      * 设置显示的文字
      *
      * @param stepsBeanList

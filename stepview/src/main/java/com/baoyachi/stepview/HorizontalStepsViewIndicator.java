@@ -197,7 +197,8 @@ public class HorizontalStepsViewIndicator extends View
             //后一个ComplectedXPosition
             final float afterComplectedXPosition = mCircleCenterPointPositionList.get(i + 1);
 
-            if(i <= mComplectingPosition&&mStepBeanList.get(0).getState()!=StepBean.STEP_UNDO)//判断在完成之前的所有点
+            int state =  mStepBeanList.get(0).getState();
+            if(i <= mComplectingPosition&& state==StepBean.STEP_COMPLETED)//判断在完成之前的所有点
             {
                 //判断在完成之前的所有点，画完成的线，这里是矩形,很细的矩形，类似线，为了做区分，好看些
                 canvas.drawRect(preComplectedXPosition + mCircleRadius - 10, mLeftY, afterComplectedXPosition - mCircleRadius + 10, mRightY, mCompletedPaint);
@@ -260,6 +261,8 @@ public class HorizontalStepsViewIndicator extends View
 
         if(mStepBeanList!=null&&mStepBeanList.size()>0)
         {
+            mComplectingPosition = 0;
+
             for(int i = 0;i<mStepNum;i++)
             {
                 StepBean stepsBean = mStepBeanList.get(i);
